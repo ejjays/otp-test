@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtual Phone Number</title>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBJ7sD1YDAwtloLInnMuM6V9it3vFMPag0",
+      authDomain: "ejjays-4ff24.firebaseapp.com",
+      projectId: "ejjays-4ff24",
+      storageBucket: "ejjays-4ff24.appspot.com",
+      messagingSenderId: "579883345795",
+      appId: "1:579883345795:web:6d30366f33bf70197e78b6",
+      measurementId: "G-K8S3KYNQGZ",
+      databaseURL: "https://ejjays-4ff24-default-rtdb.firebaseio.com/"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const rtdb = getDatabase(app);
+
+    // Get the input field and the display area
+    const mobileInput = document.getElementById("mobileInput");
+    const mobileDisplay = document.getElementById("mobileDisplay");
+
+    // Add an event listener to the input field
+    mobileInput.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        const mobileNumber = mobileInput.value;
+
+        // Store the mobile number in the Realtime Database
+        set(ref(rtdb, "mobileNumber"), mobileNumber)
+          .then(() => {
+            console.log("Mobile number stored in Realtime Database");
+
+            // Store the mobile number in Cloud Firestore
+            addDoc(collection(db, "mobileNumbers"), { number: mobileNumber })
+              .then(() => {
+                console.log("Mobile number stored in Cloud Firestore");
+                mobileDisplay.textContent = mobileNumber;
+              })
+              .catch((error) => {
+                console.error("Error storing mobile number in Cloud Firestore: ", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error storing mobile number in Realtime Database: ", error);
+          });
+      }
+    });
+
+    // Retrieve the mobile number from the Realtime Database and display it
+    const mobileNumberRef = ref(rtdb, "mobileNumber");
+    onValue(mobileNumberRef, (snapshot) => {
+      const data = snapshot.val();
+      mobileDisplay.textContent = data;
+    });
+  </script>
+</head>
+<body>
+  <h1>Virtual Phone Number</h1>
+  <input type="text" id="mobileInput" placeholder="Enter your mobile number">
+  <p>Your mobile number: <span id="09669821111"></span></p>
+</body>
+</html>
