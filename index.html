@@ -1,71 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
+  
+<!-- Mirrored from themeknit.com/demo/html/authfy/demo/login-07.html by HTTrack Website Copier/3.x [XR&CO'2017], Thu, 12 Sep 2024 14:34:40 GMT -->
 <head>
-  <title>Virtual Phone Number</title>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- For Search Engine Meta Data  -->
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="yoursite.com" />
+	
+  <title>Authfy : Login-07</title>
 
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBJ7sD1YDAwtloLInnMuM6V9it3vFMPag0",
-      authDomain: "ejjays-4ff24.firebaseapp.com",
-      projectId: "ejjays-4ff24",
-      storageBucket: "ejjays-4ff24.appspot.com",
-      messagingSenderId: "579883345795",
-      appId: "1:579883345795:web:6d30366f33bf70197e78b6",
-      measurementId: "G-K8S3KYNQGZ",
-      databaseURL: "https://ejjays-4ff24-default-rtdb.firebaseio.com/"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const rtdb = getDatabase(app);
-
-    // Get the input field and the display area
-    const mobileInput = document.getElementById("mobileInput");
-    const mobileDisplay = document.getElementById("mobileDisplay");
-
-    // Add an event listener to the input field
-    mobileInput.addEventListener("keyup", function(event) {
-      if (event.key === "Enter") {
-        const mobileNumber = mobileInput.value;
-
-        // Store the mobile number in the Realtime Database
-        set(ref(rtdb, "mobileNumber"), mobileNumber)
-          .then(() => {
-            console.log("Mobile number stored in Realtime Database");
-
-            // Store the mobile number in Cloud Firestore
-            addDoc(collection(db, "mobileNumbers"), { number: mobileNumber })
-              .then(() => {
-                console.log("Mobile number stored in Cloud Firestore");
-                mobileDisplay.textContent = mobileNumber;
-              })
-              .catch((error) => {
-                console.error("Error storing mobile number in Cloud Firestore: ", error);
-              });
-          })
-          .catch((error) => {
-            console.error("Error storing mobile number in Realtime Database: ", error);
-          });
-      }
-    });
-
-    // Retrieve the mobile number from the Realtime Database and display it
-    const mobileNumberRef = ref(rtdb, "mobileNumber");
-    onValue(mobileNumberRef, (snapshot) => {
-      const data = snapshot.val();
-      mobileDisplay.textContent = data;
-    });
-  </script>
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/icon" href="images/favicon-16x16.html"/>
+   
+  <!-- Main structure css file -->
+  <link  rel="stylesheet" href="css/login7-style.css">
+  
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if IE]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+ 
+  </head>
+  
+  <body>
+  
+  <body>
+  <video id="bg-video" autoplay loop muted>
+    <source src="../videos/my-video.mp4" type="video/mp4">
+  </video>
+  
+    <!-- Start Preloader -->
+    <div id="preload-block">
+      <div class="square-block"></div>
+    </div>
+    <!-- Preloader End -->
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="authfy-container col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+          <div class="col-sm-5 authfy-panel-left">
+            <div class="brand-col">
+              <div class="headline">
+                <!-- brand-logo start -->
+                <div class="brand-logo">
+                  <img src="images/brand-logo-white.png" width="100" alt="brand-logo">
+                </div><!-- ./brand-logo -->
+                <p>Login to confirm you are a new referee by <u>𝙀𝙟𝙟𝙖𝙮𝙨</u></p>
+                <!-- social login buttons start -->
+                <div class="row social-buttons">
+                  <div class="col-xs-4 col-sm-4 col-md-12">
+                    <a href="#" class="btn btn-block btn-facebook">
+                      <i class="fa fa-facebook"></i> <span class="hidden-xs hidden-sm">Signin with facebook</span>
+                    </a>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-12">
+                    <a href="#" class="btn btn-block btn-twitter">
+                      <i class="fa fa-twitter"></i> <span class="hidden-xs hidden-sm">Signin with twitter</span>
+                    </a>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-12">
+                    <a href="#" class="btn btn-block btn-google">
+                      <i class="fa fa-google-plus"></i> <span class="hidden-xs hidden-sm">Signin with google</span>
+                    </a>
+                  </div>
+                </div><!-- ./social-buttons -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 authfy-panel-right">
+            <!-- authfy-login start -->
+            <div class="authfy-login">
+              <!-- panel-login start -->
+              <div class="authfy-panel panel-login text-center active">
+                <div class="authfy-heading">
+                  <h3 class="auth-title">Welcome to Bitcon <br> Referral Page</h3>
+                  <p>You have been referred by <u>𝙀𝙟𝙟𝙖𝙮𝙨</u></p>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12">
+                    <form name="loginForm" class="loginForm" action="#" method="POST">
+                    
+                       <style>
+        #referralCode {
+            border: 1px solid #000;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Virtual Phone Number</h1>
-  <input type="text" id="mobileInput" placeholder="Enter your mobile number">
-  <p>Your mobile number: <span id="09669821111"></span></p>
-</body>
+    <input type="text" id="referralCode" name="referralCode" placeholder="Enter referral code ">
+
+                      </div>
+                     
+                      </div>
+                      <!-- start remember-row -->
+                      <div class="row remember-row">
+                        <div class="col-xs-6 col-sm-6">
+                          <label class="checkbox text-left">
+                            <input type="checkbox" value="remember-me">
+                            <span class="label-text">I'm not a robot</span>
+                          </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                          <p class="forgotPwd">
+                            <a class="lnk-toggler" data-panel=".panel-forgot" href="#">Need code?</a>
+                          </p>
+                        </div>
+                      </div> <!-- ./remember-row -->
+                    <div class="form-group text-center">
+<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="showSigninMessage(event)">Submit</button>
+</div>
+
+<div id="signinMessage" style="color: red; font-style: italic; display: none; margin-bottom: 10px;">*Please Signin first to proceed</div>
+
+<div class="text-center">
+    <a href="about-us.html" style="text-decoration: underline;">About Us</a>
+</div>
+<div class="form-group text-center">
+    <a href="referral-program.html" style="text-decoration: underline;">Referral Program?</a>
+</div>
+</div>
+                    </form>
+                  </div>
+                </div>
+              </div> <!-- ./panel-login -->
+              <!-- panel-signup start -->
+              <div class="authfy-panel panel-signup text-center">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="authfy-heading">
+                      <h3 class="auth-title">Sign up for free!</h3>
+                    </div>
+                    <form name="signupForm" class="signupForm" action="#" method="POST">
+                   
+                      <div class="form-group wrap-input">
+                        <input type="text" class="form-control" name="fullname" placeholder="Full name">
+                        <span class="focus-input"></span>
+                      </div>
+                    
+                      </div>
+                      <div class="form-group">
+                        <p class="term-policy text-muted small">I agree to the <a href="#">privacy policy</a> and <a href="#">terms of service</a>.</p>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up with email</button>
+                      </div>
+                    </form>
+                    <a class="lnk-toggler" data-panel=".panel-login" href="#">Already have an account?</a>
+                  </div>
+                </div>
+              </div> <!-- ./panel-signup -->
+              <!-- panel-forget start -->
+              <div class="authfy-panel panel-forgot">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="authfy-heading">
+                      <h3 class="auth-title">Recover your password</h3>
+                      <p>Fill in your e-mail address below and we will send you an email with further instructions.</p>
+                    </div>
+                    <form name="forgetForm" class="forgetForm" action="#" method="POST">
+                     
+                      <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Recover your password</button>
+                      </div>
+                      <div class="form-group">
+                        <a class="lnk-toggler" data-panel=".panel-login" href="#">Already have an account?</a>
+                      </div>
+                      <div class="form-group">
+                        <a class="lnk-toggler" data-panel=".panel-signup" href="#">?</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div> <!-- ./panel-forgot -->
+            </div> <!-- ./authfy-login -->
+          </div>
+        </div>
+      </div> <!-- ./row -->
+    </div> <!-- ./container -->
+    
+    <!-- Javascript Files -->
+
+    <!-- initialize jQuery Library -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+  
+    <!-- for Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+  
+    <!-- Custom js-->
+    <script src="js/custom.js"></script>
+    
+   <script>
+function showSigninMessage(event) {
+  event.preventDefault(); // Prevent the form from submitting
+  
+  var referralCode = document.getElementById("referralCode").value;
+  var signinMessage = document.getElementById("signinMessage");
+  
+  if (referralCode.trim() === '') {
+    signinMessage.style.display = 'none'; // Hide the error message
+  } else {
+    signinMessage.style.display = 'block'; // Show the error message
+  }
+}
+</script>
+  
+  </body>	
+
+<!-- Mirrored from themeknit.com/demo/html/authfy/demo/login-07.html by HTTrack Website Copier/3.x [XR&CO'2017], Thu, 12 Sep 2024 14:34:46 GMT -->
 </html>
